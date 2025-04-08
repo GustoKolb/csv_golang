@@ -8,6 +8,11 @@ import (
     "fmt"
 )
 
+//atualizar versao
+//testar getLines
+//testar getCols
+//testar GetInfo
+//montar matriz
 
 type FileInfo struct {
 
@@ -98,38 +103,6 @@ func GetCols (file *os.File) (int, error) {
 
 }
 
-
-//------------------------------------------------------------------
-func GetWordSpace (file *os.File) (int, error) {
-
-    wordSpace := 0
-    var err error
-
-    if file == nil {
-        return 0, errors.New("GetWordSpace: no file")
-    }
-
-    //Reset pointer to the beginning of the file
-    _, err = file.Seek(0, 0)
-	if err != nil {
-		fmt.Println(err)
-		return 0, err
-	}
-
-    scanner := bufio.NewScanner(file)
-    scanner.Split(SplitByCommas)
-
-    for scanner.Scan(){
-    
-        fmt.Println(scanner.Text())
-        if len(scanner.Text()) > wordSpace {
-            fmt.Println(wordSpace)
-            wordSpace = len(scanner.Text())
-        }
-    }
-    return wordSpace, nil
-
-}
 
 //------------------------------------------------------------------
 //func GetMatrix (file *os.File, numLines int, numCols int) [][]string {}
